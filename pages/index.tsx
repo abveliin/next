@@ -50,10 +50,10 @@ export default function Home({ posts }: Posts) {
         headers: { "Content-Type": "application/json" },
         method: `${method}`,
       }).then(() => {
-        console.log("method", method);
         setForm({ title: "", content: "", id: "" });
         refresh_data(); // for updating the retreiving list after a submit
         setContent("");
+        console.log("method", method);
       });
     } catch (error) {
       console.log(error);
@@ -158,7 +158,7 @@ export const getStaticProps = async () => {
       id: true,
       content: true,
     },
-    orderBy: { id: "desc" },
+    orderBy: { create_at: "desc" },
   });
 
   return {

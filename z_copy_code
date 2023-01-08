@@ -1,14 +1,12 @@
-# Environment variables declared in this file are automatically made available to Prisma.
-
-# See the documentation for more detail: https://pris.ly/d/prisma-schema#accessing-environment-variables-from-the-schema
-
-# Prisma supports the native connection string format for PostgreSQL, MySQL, SQLite, SQL Server, MongoDB and CockroachDB.
-
-# See the documentation for all the connection string options: https://pris.ly/d/connection-strings
-
-DB_NAME:db
-DB_HOST:localhost
-DB_USERNAME:postgres
-DB_PASSWORD:fgjh
-DB_PORT:5433
-DATABASE_URL="postgresql://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?schema=public"
+next_create
+tailwind_css
+npm install prisma --save-dev
+npx prisma init
+#after editing prisma
+npx prisma db push
+npx prisma studio
+npm install @prisma/client
+#every time the schema change we have to run👇🏾 for prisma to work
+npm prisma generate
+#make a directory in the root 
+lib/prisma.ts #allows to gain access to a db wherever we want
