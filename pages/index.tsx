@@ -89,7 +89,7 @@ export default function Home({ posts }: Posts) {
       >
         <input
           type="text"
-          placeholder="Title"
+          placeholder="Title I'm testing postgres in VPS"
           value={form.title}
           onChange={(e) => setForm({ ...form, title: e.target.value })}
           className="border-2 rounded border-gray-600 p-1"
