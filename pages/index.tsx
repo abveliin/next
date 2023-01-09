@@ -38,22 +38,15 @@ export default function Home({ posts }: Posts) {
 
   async function create(data: FormData) {
     try {
-      let method: string = "POST";
-      let end_point: string = "create";
-      if (data.id) {
-        method = "PUT";
-        end_point = `post/${data.id}`;
-        console.log(method, end_point);
-      }
-      fetch(`http://localhost:3000/api/${end_point}`, {
+      fetch(`http://localhost:3000/api/create`, {
         body: JSON.stringify(data),
         headers: { "Content-Type": "application/json" },
-        method: `${method}`,
+        method: "POST",
       }).then(() => {
         setForm({ title: "", content: "", id: "" });
         refresh_data(); // for updating the retreiving list after a submit
         setContent("");
-        console.log("method", method);
+        //console.log("method", method);
       });
     } catch (error) {
       console.log(error);

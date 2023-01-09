@@ -1,11 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest } from "next/types";
 import { prisma } from "../../lib/prisma";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function handler(req: NextApiRequest) {
   const post_id = req.query.id;
 
   if (req.method === "PUT") {
@@ -21,7 +18,7 @@ export default async function handler(
           },
         })
         .then((res) => () => console.log(res));
-    } catch {
+    } catch (error) {
       console.log("failure");
     }
   }
@@ -32,7 +29,7 @@ export default async function handler(
           where: { id: String(post_id) },
         })
         .then((res) => () => console.log(res));
-    } catch {
+    } catch (error) {
       console.log("error");
     }
   }
