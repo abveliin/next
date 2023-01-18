@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next/types";
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../../../lib/prisma";
 
 type Data = {
   title: string;

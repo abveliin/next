@@ -58,7 +58,7 @@ export default function Home({ posts }: Posts) {
       }
     } else {
       try {
-        await fetch(`http://localhost:3000/api/create`, {
+        await fetch(`http://localhost:3000/api/post/create`, {
           body: JSON.stringify(data),
           headers: {
             "Content-Type": "application/json",
