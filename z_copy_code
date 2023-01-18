@@ -7,6 +7,24 @@ npx prisma db push
 npx prisma studio
 npm install @prisma/client
 #every time the schema change we have to run👇🏾 for prisma to work
-npm prisma generate
+npx prisma generate
 #make a directory in the root 
 lib/prisma.ts #allows to gain access to a db wherever we want
+
+
+INSERT INTO Note (id, title, content, created_at, updated_at)
+VALUES ("54f9a320-99c3-4367-bd24-dd9adde81ae0", "okay", "good to go", "2022-10-31 21:06:33.795", "2022-10-31 21:06:33.795");
+
+
+
+.then(() => {
+          setForm({ title: "", content: "", id: "" });
+          refresh_data(); // for updating the retreiving list after a submit
+          setContent("");
+          console.log("then we update");
+        })
+
+
+.then(() => {
+        refresh_data(); // for updating the retreiving list after a submit
+      })

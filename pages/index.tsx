@@ -37,30 +37,60 @@ export default function Home({ posts }: Posts) {
   };
 
   async function create(data: FormData) {
-    try {
-      fetch(`http://localhost:3000/api/create`, {
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" },
-        method: "POST",
-      }).then(() => {
-        setForm({ title: "", content: "", id: "" });
-        refresh_data(); // for updating the retreiving list after a submit
-        setContent("");
-        //console.log("method", method);
-      });
-    } catch (error) {
-      console.log(error);
+    if (data.id) {
+      try {
+        fetch(`http://localhost:3000/api/post/${data.id}`, {
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+          },
+          method: "PUT",
+        })
+          .then(() => {
+            setForm({ title: "", content: "", id: "" });
+            setContent("");
+            refresh_data();
+            console.log("then we update");
+          })
+          .catch((e) => console.log(e));
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        await fetch(`http://localhost:3000/api/create`, {
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+          },
+          method: "POST",
+        })
+          .then(() => {
+            setForm({ title: "", content: "", id: "" });
+            setContent("");
+            refresh_data();
+            console.log("then we create");
+          })
+          .catch((e) => console.log(e));
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 
   const delete_fn = async (id: string) => {
     try {
-      fetch(`http://localhost:3000/api/post/${id}`, {
-        headers: { "Content-Type": "application/json" },
+      await fetch(`http://localhost:3000/api/post/${id}`, {
         method: "DELETE",
-      }).then(() => {
-        refresh_data(); // for updating the retreiving list after a submit
-      });
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then(() => {
+          refresh_data(); // for updating the retreiving list after a submit
+          console.log("delete");
+        })
+        .catch((e) => console.log(e));
     } catch (error) {
       console.log(error);
     }
@@ -70,8 +100,6 @@ export default function Home({ posts }: Posts) {
     try {
       // DOMPurify.sanitize(data)
       create(data);
-      console.log("here we have data", data);
-      refresh_data();
     } catch (error) {
       console.log(error);
     }
