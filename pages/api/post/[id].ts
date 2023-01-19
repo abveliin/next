@@ -20,7 +20,7 @@ export default async function handler(
           content: content,
         },
       });
-      res.status(200).json({ message: "data" });
+      res.status(200).json({ message: "data" }); // this line is must have
     } catch (error) {
       console.log("failure");
     }

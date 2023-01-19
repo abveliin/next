@@ -39,7 +39,7 @@ export default function Home({ posts }: Posts) {
   async function create(data: FormData) {
     if (data.id) {
       try {
-        fetch(`http://localhost:3000/api/post/${data.id}`, {
+        fetch(`http://136.244.115.250/api/post/${data.id}`, {
           body: JSON.stringify(data),
           headers: {
             "Content-Type": "application/json",
@@ -58,7 +58,7 @@ export default function Home({ posts }: Posts) {
       }
     } else {
       try {
-        await fetch(`http://localhost:3000/api/post/create`, {
+        await fetch(`http://136.244.115.250/api/post/create`, {
           body: JSON.stringify(data),
           headers: {
             "Content-Type": "application/json",
@@ -80,7 +80,7 @@ export default function Home({ posts }: Posts) {
 
   const delete_fn = async (id: string) => {
     try {
-      await fetch(`http://localhost:3000/api/post/${id}`, {
+      await fetch(`http://136.244.115.250/api/post/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -171,7 +171,7 @@ export default function Home({ posts }: Posts) {
   );
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const posts = await prisma.post.findMany({
     // created_at and updated_at can be dificult to retreive that's why I add these parameters in findMany function
     select: {
