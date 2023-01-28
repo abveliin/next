@@ -14,11 +14,7 @@ interface FormData {
 }
 
 interface Posts {
-  posts: {
-    id: string;
-    title: string;
-    content: string;
-  }[];
+  posts: FormData[];
 }
 
 export default function Home({ posts }: Posts) {
@@ -39,7 +35,7 @@ export default function Home({ posts }: Posts) {
   async function create(data: FormData) {
     if (data.id) {
       try {
-        fetch(`http://136.244.115.250/api/post/${data.id}`, {
+        fetch(`http://localhost:3000/api/post/${data.id}`, {
           body: JSON.stringify(data),
           headers: {
             "Content-Type": "application/json",
@@ -58,7 +54,7 @@ export default function Home({ posts }: Posts) {
       }
     } else {
       try {
-        await fetch(`http://136.244.115.250/api/post/create`, {
+        await fetch(`http://localhost:3000/api/post/create`, {
           body: JSON.stringify(data),
           headers: {
             "Content-Type": "application/json",
@@ -80,7 +76,7 @@ export default function Home({ posts }: Posts) {
 
   const delete_fn = async (id: string) => {
     try {
-      await fetch(`http://136.244.115.250/api/post/${id}`, {
+      await fetch(`http://localhost:3000/api/post/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -122,6 +118,20 @@ export default function Home({ posts }: Posts) {
           onChange={(e) => setForm({ ...form, title: e.target.value })}
           className="border-2 rounded border-gray-600 p-1"
         />
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="username"
+          >
+            Username
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="username"
+            type="text"
+            placeholder="Username"
+          />
+        </div>
 
         <Wysiwyg content={form.content} setContent={setContent} />
 
